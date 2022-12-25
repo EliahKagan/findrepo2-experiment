@@ -1,0 +1,28 @@
+name: findrepo2-experiment
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - ipykernel
+  - msgpack-numpy
+  - msgpack-python
+  - numpy
+  - openai
+  - pysftp
+
+  # For openai.embeddings_utils (move above if used directly)
+  - matplotlib
+  - pandas
+  - plotly
+  - scikit-learn
+  - scipy
+  - tenacity
+
+  # For tiktoken
+  - blobfile>=2
+  - pip
+  - regex>=2022.1.18
+  - pip:
+    - tiktoken
