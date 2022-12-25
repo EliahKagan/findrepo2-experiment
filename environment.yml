@@ -5,12 +5,12 @@ channels:
 
 dependencies:
   - python=3.11
+  - fabric
   - ipykernel
   - msgpack-numpy
   - msgpack-python
   - numpy
   - openai
-  - pysftp
 
   # For openai.embeddings_utils (move above if used directly)
   - matplotlib

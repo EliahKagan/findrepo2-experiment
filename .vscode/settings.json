@@ -10,7 +10,6 @@
         "openai",
         "pathnames",
         "plotly",
-        "pysftp",
         "scikit",
         "scipy",
         "tiktoken"
