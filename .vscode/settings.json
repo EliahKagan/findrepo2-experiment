@@ -2,9 +2,12 @@
     "cSpell.words": [
         "apiutil",
         "blobfile",
+        "colorama",
         "conda",
         "findrepo",
         "ipykernel",
+        "LIGHTGREEN",
+        "LIGHTMAGENTA",
         "matplotlib",
         "msgpack",
         "mypy",
@@ -17,5 +20,6 @@
         "scikit",
         "scipy",
         "tiktoken"
-    ]
+    ],
+    "notebook.output.textLineLimit": 1000
 }

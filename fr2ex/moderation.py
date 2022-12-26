@@ -5,7 +5,7 @@ This project uses an OpenAI service (embeddings). But it does not involve
 generating any content with OpenAI services. So checking the moderation
 endpoint shouldn't be needed for compliance with the OpenAI content policy.
 
-It may still be interesting. One uses is to point out to the user that the
+It may still be interesting. One use is to point out to the user that the
 repository name they're interested in may inadvertently have unintended
 interpretations. For example, a UI element that points out that a repo name is
 a poor choice because it has whitespace, control characters, or other confusing
@@ -18,8 +18,8 @@ Note that, per https://beta.openai.com/docs/guides/moderation/overview:
     outputs of OpenAI APIs. We currently do not support monitoring of
     third-party traffic.
 
-We are sending repository names as input to the text-embeddings-ada-002, so
-this should be fine. But it is important to keep in mind:
+We are sending repository names as input to the text-embedding-ada-002, so this
+should be fine. But it is important to keep in mind:
 
  1. Except in limited manual-testing scenarios, if we cache a repository name's
     embedding, and its moderation scores are also computed (including before),
