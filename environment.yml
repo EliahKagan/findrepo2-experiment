@@ -11,6 +11,7 @@ dependencies:
   - msgpack-python
   - numpy
   - openai
+  - pip
 
   # For openai.embeddings_utils (move above if used directly)
   - matplotlib
@@ -20,9 +21,17 @@ dependencies:
   - scipy
   - tenacity
 
-  # For tiktoken
+  # Dependencies for tiktoken
   - blobfile>=2
-  - pip
   - regex>=2022.1.18
+
+  # Development tools (not needed to run the code)
+  - flake8
+  - mypy
+  - pylint
+  - pyright
+
+  # Unavailable via conda (for some CPython version/architecture that we need)
   - pip:
+    - blake3
     - tiktoken

@@ -1,15 +1,19 @@
 {
     "cSpell.words": [
+        "apiutil",
         "blobfile",
         "conda",
         "findrepo",
         "ipykernel",
         "matplotlib",
         "msgpack",
+        "mypy",
         "numpy",
         "openai",
         "pathnames",
         "plotly",
+        "pylint",
+        "pyright",
         "scikit",
         "scipy",
         "tiktoken"
