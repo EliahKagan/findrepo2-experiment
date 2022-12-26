@@ -84,7 +84,6 @@ class Result(TypedDict):
     """Whether one or more categories are flagged in this moderation result."""
 
 
-@_apiutil.uses_api
 def get_moderation(texts: list[str]) -> list[Result]:
     """
     Get a list of moderation results for texts.
@@ -99,6 +98,7 @@ def get_moderation(texts: list[str]) -> list[Result]:
             logging.info('Reading cached moderation results.')
             return msgpack.unpack(file)
 
+    _apiutil.prepare()
     logging.info('Querying OpenAI moderation endpoint.')
     response: Any = openai.Moderation.create(input=texts)
     results = response.results

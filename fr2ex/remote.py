@@ -14,7 +14,7 @@ GIT_SUFFIX = '.git'
 
 def fetch_repo_names() -> list[str]:
     """Obtain a list of repository names from the remote Git server."""
-    # Find out the hostname of the server has has the remote repositories.
+    # Find out the hostname of the server that has the remote repositories.
     config_path = pathlib.Path.home() / '.nrr-frr-server'
     with open(config_path, encoding='utf-8') as file:
         hostname = file.read().strip()
