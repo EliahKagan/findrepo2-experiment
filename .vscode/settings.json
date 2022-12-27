@@ -6,6 +6,7 @@
         "colorama",
         "conda",
         "findrepo",
+        "floatfmt",
         "ipykernel",
         "LIGHTGREEN",
         "LIGHTMAGENTA",
@@ -21,6 +22,7 @@
         "pyright",
         "scikit",
         "scipy",
+        "tablefmt",
         "tiktoken"
     ],
     "notebook.output.textLineLimit": 1000

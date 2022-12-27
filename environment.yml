@@ -17,6 +17,7 @@ dependencies:
   - pandas
   - pip
   - requests
+  - tabulate
 
   # For openai.embeddings_utils (move above if used directly)
   - matplotlib
