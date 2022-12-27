@@ -17,7 +17,6 @@ dependencies:
   - pandas
   - pip
   - requests
-  - types-colorama
 
   # For openai.embeddings_utils (move above if used directly)
   - matplotlib
@@ -35,8 +34,11 @@ dependencies:
   - mypy
   - pylint
   - pyright
+  - types-colorama
+  - types-requests
 
   # Unavailable via conda (for some CPython version/architecture that we need)
   - pip:
     - blake3
     - tiktoken
+    - types-beautifulsoup4
