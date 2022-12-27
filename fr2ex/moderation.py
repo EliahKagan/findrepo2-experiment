@@ -35,16 +35,11 @@ should be fine. But it is important to keep in mind:
 
 __all__ = ['Categories', 'CategoryScores', 'Result']
 
-import contextlib
-import json
-import logging
 from typing import Any, TypedDict
 
-import blake3
-import msgpack
 import openai
 
-from fr2ex import _apiutil
+from fr2ex import _task
 
 
 Categories = TypedDict('Categories', {
@@ -84,23 +79,8 @@ class Result(TypedDict):
     """Whether one or more categories are flagged in this moderation result."""
 
 
+@_task.api_task('moderation')
 def get_moderation(texts: list[str]) -> list[Result]:
     """Load or query the API for a list of moderation results for all texts."""
-    hexdigest = blake3.blake3(json.dumps(texts).encode()).hexdigest(length=16)
-    filename = f'moderation-{hexdigest}.msgpack'
-
-    with contextlib.suppress(FileNotFoundError):
-        with open(filename, 'rb') as file:
-            logging.info('Reading cached moderation results.')
-            return msgpack.unpack(file)
-
-    _apiutil.prepare()
-    logging.info('Querying OpenAI moderation endpoint.')
-
     response: Any = openai.Moderation.create(input=texts)
-    results = response.results
-
-    with open(filename, 'wb') as file:
-        msgpack.pack(results, file)
-
-    return results
+    return response.results
