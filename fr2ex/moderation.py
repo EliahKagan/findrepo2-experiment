@@ -29,8 +29,8 @@ should be fine. But it is important to keep in mind:
 
  2. If we do an experiment that does not involve using any OpenAI models, for
     example if we compute embeddings with a non-OpenAI model without also
-    computing them with an OpenAI model), then that experiment MUST NOT send
-    the repository names (nor other data) to the OpenAI moderation endpoint.
+    computing them with an OpenAI model, then that experiment MUST NOT send the
+    repository names (nor other data) to the OpenAI moderation endpoint.
 """
 
 __all__ = ['Categories', 'CategoryScores', 'Result']

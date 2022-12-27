@@ -4,7 +4,9 @@ Counting and displaying cl100k_base tokens (used by text-embedding-ada-002).
 
 __all__ = ['DEFAULT_BASE_STYLING', 'DEFAULT_STYLING_CYCLE', 'count', 'show']
 
+import decimal
 import functools
+import textwrap
 from typing import Iterable, Iterator, Optional, Sequence
 
 import colorama
@@ -36,6 +38,25 @@ _decode_one = functools.partial(_encoding.decode, errors='strict')
 def count(texts: list[str]) -> int:
     """Count how many total cl100k_base tokens are in all the given texts."""
     return sum(len(tokens) for tokens in _encode_many(texts))
+
+
+def report_cost(texts: list[str]) -> None:
+    """Report a cost estimate for calling text-embedding-ada-002 on texts."""
+    # TODO: Use Selenium to check https://openai.com/api/pricing/ for the rate.
+    rate_numerator = decimal.Decimal('0.0004')
+    rate_denominator = 1000
+
+    token_count = count(texts)
+    total_cost = token_count * rate_numerator / rate_denominator
+
+    message = (
+        f'I think the rate is ${rate_numerator} per {rate_denominator} '
+        f'tokens. If so, the cost to process {token_count} tokens is about '
+        f'${total_cost} (that is, {total_cost * 100} cents).'
+    )
+
+    for line in textwrap.wrap(message):
+        print(line)
 
 
 def show(texts: list[str], *,
