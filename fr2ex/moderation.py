@@ -85,11 +85,7 @@ class Result(TypedDict):
 
 
 def get_moderation(texts: list[str]) -> list[Result]:
-    """
-    Get a list of moderation results for texts.
-
-    Cached results are used if available. Otherwise an API query is made.
-    """
+    """Load or query the API for a list of moderation results for all texts."""
     hexdigest = blake3.blake3(json.dumps(texts).encode()).hexdigest(length=16)
     filename = f'moderation-{hexdigest}.msgpack'
 
@@ -100,8 +96,11 @@ def get_moderation(texts: list[str]) -> list[Result]:
 
     _apiutil.prepare()
     logging.info('Querying OpenAI moderation endpoint.')
+
     response: Any = openai.Moderation.create(input=texts)
     results = response.results
+
     with open(filename, 'wb') as file:
         msgpack.pack(results, file)
+
     return results
