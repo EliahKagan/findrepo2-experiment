@@ -1,6 +1,12 @@
 """Shared custom logic for accessing the OpenAI API and caching results."""
 
-__all__ = ['DEFAULT_API_KEY_PATH', 'Task', 'TaskDecorator', 'api_task']
+__all__ = [
+    'DEFAULT_API_KEY_PATH',
+    'ensure_api_key',
+    'Task',
+    'TaskDecorator',
+    'api_task',
+]
 
 import contextlib
 import functools
@@ -36,7 +42,7 @@ def _build_path(task_name: str, texts: list[str]) -> Path:
     return _DATA_DIR / f'{task_name}-{hexdigest}.msgpack'
 
 
-def _ensure_api_key() -> None:
+def ensure_api_key() -> None:
     """Load the OpenAI API key from a key file, if it is not yet loaded."""
     if openai.api_key_path is None and openai.api_key is None:
         openai.api_key_path = DEFAULT_API_KEY_PATH
@@ -66,7 +72,7 @@ def api_task(task_name: str) -> TaskDecorator:
                     logging.info('Reading cached %s.', task_name)
                     return msgpack.unpack(file)
 
-            _ensure_api_key()
+            ensure_api_key()
             logging.info('Querying OpenAI %s endpoint.', task_name)
             results = func(texts)
 
