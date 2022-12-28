@@ -12,6 +12,7 @@ dependencies:
   - ipykernel
   - msgpack-numpy
   - msgpack-python
+  - nptyping
   - numpy
   - openai
   - pandas

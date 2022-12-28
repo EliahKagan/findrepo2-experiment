@@ -16,6 +16,7 @@
         "msgpack",
         "mypy",
         "ndarray",
+        "nptyping",
         "numpy",
         "openai",
         "pathnames",
