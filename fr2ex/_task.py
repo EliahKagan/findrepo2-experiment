@@ -1,22 +1,25 @@
 """Shared custom logic for accessing the OpenAI API and caching results."""
 
-__all__ = ['DEFAULT_API_KEY_PATH', 'api_task']
+__all__ = ['DEFAULT_API_KEY_PATH', 'Task', 'TaskDecorator', 'api_task']
 
 import contextlib
 import functools
 import json
 import logging
-from typing import Any  # FIXME: Replace uses with specific types.
+from typing import Protocol, TypeVar
 
 import blake3
 import msgpack
 import msgpack_numpy
 import openai
 
-msgpack_numpy.patch()
-
 DEFAULT_API_KEY_PATH = '.api_key'
 """The default path to look for the OpenAI API key."""
+
+_T = TypeVar('_T')
+_T_co = TypeVar('_T_co', covariant=True)
+
+msgpack_numpy.patch()
 
 
 def _build_filename(task_name: str, texts: list[str]) -> str:
@@ -32,11 +35,23 @@ def _ensure_api_key() -> None:
         openai.api_key_path = DEFAULT_API_KEY_PATH
 
 
-def api_task(task_name: str) -> Any:
+class Task(Protocol[_T_co]):
+    """Protocol for callables providing core logic of API tasks."""
+
+    def __call__(self, texts: list[str]) -> _T_co: ...
+
+
+class TaskDecorator(Protocol):
+    """Protocol for callables that decorate a Task, returning another Task."""
+
+    def __call__(self, func: Task[_T]) -> Task[_T]: ...
+
+
+def api_task(task_name: str) -> TaskDecorator:
     """Decorator factory to load a saved result or query the OpenAI API."""
-    def decorator(func: Any) -> Any:
+    def decorator(func: Task[_T]) -> Task[_T]:
         @functools.wraps(func)
-        def wrapper(texts: list[str]) -> Any:
+        def wrapper(texts: list[str]) -> _T:
             filename = _build_filename(task_name, texts)
 
             with contextlib.suppress(FileNotFoundError):
