@@ -56,11 +56,11 @@ def api_task(task_name: str) -> TaskDecorator:
 
             with contextlib.suppress(FileNotFoundError):
                 with open(filename, 'rb') as file:
-                    logging.info(f'Reading cached {task_name}.')
+                    logging.info('Reading cached %s.', task_name)
                     return msgpack.unpack(file)
 
             _ensure_api_key()
-            logging.info(f'Querying OpenAI {task_name} endpoint.')
+            logging.info('Querying OpenAI %s endpoint.', task_name)
             results = func(texts)
 
             with open(filename, 'wb') as file:
