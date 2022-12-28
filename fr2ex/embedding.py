@@ -21,4 +21,4 @@ def embed_many(texts: list[str]) -> NDArray[np.float32]:
         list_of_text=texts,
         engine='text-embedding-ada-002',
     )
-    return np.array(embeddings)
+    return np.array(embeddings, np.float32)
