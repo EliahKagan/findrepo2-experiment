@@ -24,6 +24,6 @@ def embed_many(texts: list[str]) -> EmbeddingsMatrix:
         list_of_text=texts,
         engine='text-embedding-ada-002',
     )
-    matrix = np.array(embeddings, Float32)
+    matrix = np.array(embeddings, np.float32)
     assert_isinstance(matrix, EmbeddingsMatrix)
     return matrix

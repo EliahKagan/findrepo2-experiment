@@ -12,21 +12,28 @@ import blake3
 import msgpack
 import msgpack_numpy
 import openai
+from pathlib import Path
 
 DEFAULT_API_KEY_PATH = '.api_key'
 """The default path to look for the OpenAI API key."""
 
 _T = TypeVar('_T')
+"""Invariant type parameter, used for API task return types."""
+
 _T_co = TypeVar('_T_co', covariant=True)
+"""Covariant type parameter, used for API return-type protocol parameters."""
+
+_DATA_DIR = Path('data')
+"""Path to the directory where we keep the saved data files (the cache)."""
 
 msgpack_numpy.patch()
 
 
-def _build_filename(task_name: str, texts: list[str]) -> str:
-    """Build a filename with the task name and a blake3 hash of the texts."""
+def _build_path(task_name: str, texts: list[str]) -> Path:
+    """Build a pathname with the task name and a blake3 hash of the texts."""
     json_bytes = json.dumps(texts).encode()
     hexdigest = blake3.blake3(json_bytes).hexdigest(length=16)
-    return f'{task_name}-{hexdigest}.msgpack'
+    return _DATA_DIR / f'{task_name}-{hexdigest}.msgpack'
 
 
 def _ensure_api_key() -> None:
@@ -52,10 +59,10 @@ def api_task(task_name: str) -> TaskDecorator:
     def decorator(func: Task[_T]) -> Task[_T]:
         @functools.wraps(func)
         def wrapper(texts: list[str]) -> _T:
-            filename = _build_filename(task_name, texts)
+            path = _build_path(task_name, texts)
 
             with contextlib.suppress(FileNotFoundError):
-                with open(filename, 'rb') as file:
+                with open(path, 'rb') as file:
                     logging.info('Reading cached %s.', task_name)
                     return msgpack.unpack(file)
 
@@ -63,7 +70,7 @@ def api_task(task_name: str) -> TaskDecorator:
             logging.info('Querying OpenAI %s endpoint.', task_name)
             results = func(texts)
 
-            with open(filename, 'wb') as file:
+            with open(path, 'wb') as file:
                 msgpack.pack(results, file)
 
             return results
