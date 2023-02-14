@@ -1,5 +1,7 @@
 """Accessing repository information on the remote server."""
 
+__all__ = ['fetch_repo_names']
+
 import pathlib
 
 import fabric
