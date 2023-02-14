@@ -5,10 +5,12 @@
         "blobfile",
         "colorama",
         "conda",
+        "Eliah",
         "findrepo",
         "floatfmt",
         "ipykernel",
         "ipynb",
+        "Kagan",
         "LIGHTGREEN",
         "LIGHTMAGENTA",
         "lxml",
@@ -28,5 +30,10 @@
         "tablefmt",
         "tiktoken"
     ],
-    "notebook.output.textLineLimit": 1000
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "notebook.output.textLineLimit": 1000,
+    "rewrap.wrappingColumn": 79
 }
