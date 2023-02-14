@@ -178,7 +178,7 @@ def show(texts: list[str], *,
     return _do_show(texts, base_styling, styling_cycle)
 
 
-def _style_one(tokens: Iterable[str],
+def _style_one(tokens: Iterable[int],
                base_styling: str,
                styling_cycle: Sequence[str]) -> Iterator[str]:
     """Style a single series of tokens, yielding each styled piece."""
