@@ -82,7 +82,7 @@ def api_task(task_name: str) -> TaskDecorator:
             with contextlib.suppress(FileNotFoundError):
                 with open(path, 'rb') as file:
                     logging.info('Reading cached %s.', task_name)
-                    return msgpack.unpack(file)
+                    return msgpack.unpack(file, raw=False)
 
             ensure_api_key()
             logging.info('Querying OpenAI %s endpoint.', task_name)
