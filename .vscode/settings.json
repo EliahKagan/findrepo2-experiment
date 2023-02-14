@@ -6,12 +6,14 @@
     "cSpell.words": [
         "apiutil",
         "beautifulsoup",
+        "bewuethr",
         "blobfile",
         "colorama",
         "conda",
         "Eliah",
         "findrepo",
         "floatfmt",
+        "gaurav",
         "ipykernel",
         "ipynb",
         "ipython",
@@ -34,6 +36,7 @@
         "scikit",
         "scipy",
         "SFINAE",
+        "shellcheck",
         "tablefmt",
         "tiktoken"
     ],
