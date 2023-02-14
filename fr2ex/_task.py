@@ -24,6 +24,7 @@ import contextlib
 import functools
 import json
 import logging
+import os
 from pathlib import Path
 from typing import Protocol, TypeVar
 
@@ -52,8 +53,11 @@ def _build_path(task_name: str, texts: list[str]) -> Path:
 
 def ensure_api_key() -> None:
     """Load the OpenAI API key from a key file, if it is not yet loaded."""
-    if openai.api_key_path is None and openai.api_key is None:
-        openai.api_key_path = str(paths.default_api_key_file)
+    if openai.api_key is None and openai.api_key_path is None:
+        try:
+            openai.api_key = os.environ['OPENAI_API_KEY']
+        except KeyError:
+            openai.api_key_path = str(paths.default_api_key_file)
 
 
 class Task(Protocol[_T_co]):
