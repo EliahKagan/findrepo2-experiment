@@ -8,6 +8,7 @@ dependencies:
   - attrs
   - beautifulsoup4
   - colorama
+  - conda-build
   - fabric
   - ipykernel
   - msgpack-numpy
