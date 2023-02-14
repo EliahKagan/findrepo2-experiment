@@ -1,9 +1,14 @@
 # findrepo2-experiment
 
-Experiments toward a program like findrepo but using text-embedding-ada-002
-(OpenAI's new general purpose text embedding model), instead of the custom
-nonempty-substring frequency vectors (non-semantic vocabulary-unaware sparse
-lossless embeddings in an indefinitely high-dimensional vector space).
+These are experiments toward a program like
+[`findrepo`](https://github.com/EliahKagan/newrepo-findrepo#using-findrepo) but
+using
+[text-embedding-ada-002](https://platform.openai.com/docs/guides/embeddings/embedding-models)
+([OpenAI's new general purpose text embedding
+model](https://openai.com/blog/new-and-improved-embedding-model/)), instead of
+the custom nonempty-substring frequency vectors (non-semantic
+vocabulary-unaware sparse lossless embeddings in an indefinitely
+high-dimensional vector space).
 
 ## Setup
 
@@ -19,4 +24,4 @@ conda develop .
 
 ## Usage
 
-The best place to start is `notebooks/main.ipynb`.
+The best place to start is [`notebooks/main.ipynb`](notebooks/main.ipynb).
