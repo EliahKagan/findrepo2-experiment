@@ -1,1 +1,15 @@
+# SPDX-License-Identifier: 0BSD
+
+# Use LF (Unix-style) line endings for nearly all text files.
 * text=auto eol=lf
+
+# Use CRLF (Windows-style) line endings for batch files, which require them.
+*.cmd text eol=crlf
+
+# Ensure shell scripts always have LF line endings even if we change defaults.
+/.devcontainer/initialize text eol=lf
+/.devcontainer/postCreate text eol=lf
+/.devcontainer/postStart text eol=lf
+
+# Minimize the (already small) chance of Git thinking a binary file is text.
+*.msgpack binary
