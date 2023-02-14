@@ -2,6 +2,11 @@
 
 # findrepo2-experiment
 
+<!--
+  Repo description:
+  Semantic text embedding experiments for a utility like findrepo
+-->
+
 These are experiments toward a program like
 [`findrepo`](https://github.com/EliahKagan/newrepo-findrepo#using-findrepo),
 but using
