@@ -31,6 +31,10 @@ dependencies:
   - blobfile>=2
   - regex>=2022.1.18
 
+  # For Jupyter notebooks (beyond the required ipykernel listed above)
+  - ipython>=8.10
+  - jupyterlab>=3.1
+
   # Development tools (not needed to run the code)
   - flake8
   - mypy

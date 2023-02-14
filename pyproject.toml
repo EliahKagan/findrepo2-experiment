@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "findrepo2-experiment"
+version = "0.1.0"
+description = ""
+authors = ["Eliah Kagan <degeneracypressure@gmail.com>"]
+license = "0BSD"
+readme = "README.md"
+packages = [{include = "fr2ex"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+attrs = "^22.2.0"
+beautifulsoup4 = "^4.11.2"
+blake3 = "^0.3.3"
+colorama = "^0.4.6"
+fabric = "^3.0.0"
+ipykernel = "^6.21.2"
+matplotlib = "^3.7.0"
+msgpack-numpy = "^0.4.8"
+msgpack-python = "^0.5.6"
+nptyping = "^2.4.1"
+numpy = "^1.24.2"
+openai = "^0.26.5"
+pandas = "^1.5.3"
+plotly = "^5.13.0"
+requests = "^2.28.2"
+scikit-learn = "^1.2.1"
+scipy = "^1.10.0"
+tabulate = "^0.9.0"
+tenacity = "^8.2.1"
+tiktoken = "^0.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+mypy = "^1.0.0"
+pylint = "^2.16.2"
+pyright = "^1.1.293"
+types-beautifulsoup4 = "^4.11.6.5"
+types-colorama = "^0.4.15.7"
+types-requests = "^2.28.11.12"
+
+
+[tool.poetry.group.notebook.dependencies]
+ipython = "^8.10.0"
+jupyterlab = "^3.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
