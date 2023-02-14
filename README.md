@@ -33,8 +33,29 @@ conda activate findrepo2-experiment
 conda develop .
 ```
 
+Or using `poetry`:
+
+```sh
+git clone https://github.com/EliahKagan/findrepo2-experiment.git
+cd findrepo2-experiment
+poetry install
+```
+
 ## Usage
 
-The best place to start is [`notebooks/main.ipynb`](notebooks/main.ipynb).
+**The best place to start is [`notebooks/main.ipynb`](notebooks/main.ipynb).**
 
-Make sure to activate teh `findrepo2-experiment` conda environments.
+Make sure to activate the `findrepo2-experiment` environment, or verify that
+your editor/IDE has done so. If using `conda`:
+
+```sh
+cd findrepo2-experiment  # When about to use the software.
+conda activate findrepo2-experiment
+```
+
+Or if using `poetry`:
+
+```sh
+cd findrepo2-experiment  # When about to use the software.
+poetry shell
+```
