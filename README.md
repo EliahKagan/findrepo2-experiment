@@ -62,7 +62,8 @@ poetry shell
 
 ## Preliminary results
 
-Based on the matches shown in `notebooks/main.ipynb`, this *seems* to work:
+Based on the matches shown in [`notebooks/main.ipynb`](notebooks/main.ipynb),
+this *seems* to work:
 
 - Not as well as `findrepo` in the common case when the user’s guess has some
   parts of the name correct. I call this the common case because I usually
@@ -77,8 +78,9 @@ So the tests here should not be directly translated into an improved version of
 
 ## Next steps
 
-Some of the output in `notebooks/tokens.ipynb` suggests that the way the
-repository names are tokenized may contribute to poor quality.
+Some of the output in [`notebooks/tokens.ipynb`](notebooks/tokens.ipynb)
+suggests that the way the repository names are tokenized may contribute to poor
+quality.
 
 It’s unclear if this really matters. Ordinarily I think it it wouldn’t, because
 context would fill in the meaning. But when embedding repository names, no

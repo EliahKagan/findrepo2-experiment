@@ -1,4 +1,8 @@
 {
+    "cSpell.ignoreWords": [
+        "andbox",
+        "datarace"
+    ],
     "cSpell.words": [
         "apiutil",
         "beautifulsoup",
@@ -29,6 +33,7 @@
         "pyright",
         "scikit",
         "scipy",
+        "SFINAE",
         "tablefmt",
         "tiktoken"
     ],
