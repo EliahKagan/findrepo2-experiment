@@ -1,7 +1,6 @@
 """Shared custom logic for accessing the OpenAI API and caching results."""
 
 __all__ = [
-    'DEFAULT_API_KEY_PATH',
     'ensure_api_key',
     'Task',
     'TaskDecorator',
@@ -12,25 +11,21 @@ import contextlib
 import functools
 import json
 import logging
+from pathlib import Path
 from typing import Protocol, TypeVar
 
 import blake3
 import msgpack
 import msgpack_numpy
 import openai
-from pathlib import Path
 
-DEFAULT_API_KEY_PATH = '.api_key'
-"""The default path to look for the OpenAI API key."""
+from fr2ex import paths
 
 _T = TypeVar('_T')
 """Invariant type parameter, used for API task return types."""
 
 _T_co = TypeVar('_T_co', covariant=True)
 """Covariant type parameter, used for API return-type protocol parameters."""
-
-_DATA_DIR = Path('data')
-"""Path to the directory where we keep the saved data files (the cache)."""
 
 msgpack_numpy.patch()
 
@@ -39,13 +34,13 @@ def _build_path(task_name: str, texts: list[str]) -> Path:
     """Build a pathname with the task name and a blake3 hash of the texts."""
     json_bytes = json.dumps(texts).encode()
     hexdigest = blake3.blake3(json_bytes).hexdigest(length=16)
-    return _DATA_DIR / f'{task_name}-{hexdigest}.msgpack'
+    return paths.data_dir / f'{task_name}-{hexdigest}.msgpack'
 
 
 def ensure_api_key() -> None:
     """Load the OpenAI API key from a key file, if it is not yet loaded."""
     if openai.api_key_path is None and openai.api_key is None:
-        openai.api_key_path = DEFAULT_API_KEY_PATH
+        openai.api_key_path = str(paths.default_api_key_file)
 
 
 class Task(Protocol[_T_co]):

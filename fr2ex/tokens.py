@@ -33,7 +33,7 @@ import tiktoken
 DEFAULT_BASE_STYLING = colorama.Style.BRIGHT + colorama.Fore.BLACK
 """Default for styling that stays the same for all tokens being displayed."""
 
-# TODO: If this code is being distributed, pick a more accessible default.
+# FIXME: Pick a more accessible default.
 DEFAULT_STYLING_CYCLE = (
     colorama.Back.LIGHTGREEN_EX,
     colorama.Back.LIGHTMAGENTA_EX,
