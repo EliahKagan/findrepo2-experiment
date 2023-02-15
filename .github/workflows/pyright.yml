@@ -9,5 +9,21 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # TODO: Print the install script commit hash and Poetry version.
+      - name: Install poetry
+        run: curl -sSL https://raw.githubusercontent.com/EliahKagan/install.python-poetry.org/ci-repro/findrepo2-experiments/install-poetry.py | python3 -
+
+      - name: Generate requirements.txt
+        run: poetry export >requirements.txt
+
+      - name: Install library dependencies
+        run: pip install -r requirements.txt
+
       - name: pyright Typecheck
         uses: jakebailey/pyright-action@v1
