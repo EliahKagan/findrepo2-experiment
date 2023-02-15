@@ -47,16 +47,6 @@ jobs:
       with:
         python-version: 3.11
 
-    # TODO: Print the install script commit hash and Poetry version.
-    - name: Install poetry
-      run: curl -sSL https://raw.githubusercontent.com/EliahKagan/install.python-poetry.org/ci-repro/findrepo2-experiments/install-poetry.py | python3 -
-
-    - name: Generate requirements.txt
-      run: poetry export >requirements.txt
-
-    - name: Install library dependencies
-      run: pip install -r requirements.txt
-
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v2
