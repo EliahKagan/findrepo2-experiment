@@ -15,6 +15,9 @@ jobs:
         with:
           python-version: 3.11
 
+      - name: Upgrade PyPA packages
+        run: python -m pip install -U pip setuptools wheel
+
       # TODO: Print the install script commit hash and Poetry version.
       - name: Install poetry
         run: curl -sSL https://raw.githubusercontent.com/EliahKagan/install.python-poetry.org/ci-repro/findrepo2-experiments/install-poetry.py | python3 -
