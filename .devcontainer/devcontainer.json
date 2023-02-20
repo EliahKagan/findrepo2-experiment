@@ -1,6 +1,6 @@
 {
     "name": "findrepo2-experiment",
-    "image": "mcr.microsoft.com/devcontainers/python:0-3.11",
+    "image": "mcr.microsoft.com/devcontainers/python:0-3.11-bullseye",
     "features": {
         "ghcr.io/devcontainers-contrib/features/poetry:2": {},
         "ghcr.io/guiyomh/features/vim": {},

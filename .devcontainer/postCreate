@@ -15,6 +15,8 @@
 
 set -eu
 
+readonly conf_path='.inherited-configuration'
+
 nl() {
     printf '\n' >&2
 }
@@ -23,14 +25,38 @@ msg() {
     printf '%s: %s\n' "$0" "$1" >&2
 }
 
+pull_in() {
+    local name="$1" value="$2"
+
+    if git config -- "$name" >/dev/null; then
+        msg "not overwriting: $name"
+    else
+        msg "applying: $name"
+        git config --global -- "$name" "$value"
+    fi
+}
+
+pull_all_in() {
+    local name value
+
+    if ! test -e "$conf_path"; then
+        return
+    fi
+
+    while read -r name value; do
+        pull_in "$name" "$value"
+    done <"$conf_path"
+}
+
 nl
 msg 'Customizing global git configuration...'
+pull_all_in
 git config --global color.diff.new blue
 msg '...global git configuration customized.'
 
 nl
 msg 'Customizing fish (the friendly interactive shell)...'
-sudo chsh -s /usr/bin/fish vscode
+sudo chsh -s /usr/bin/fish "$USER"
 fish -c 'set -U __fish_git_prompt_color_cleanstate brgreen'
 fish -c 'set -U __fish_git_prompt_show_informative_status true'
 fish -c 'set -U __fish_git_prompt_showcolorhints true'
