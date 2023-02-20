@@ -2,7 +2,7 @@
 __pycache__/
 
 # OpenAI API key
-/.api_key
+.api_key
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
