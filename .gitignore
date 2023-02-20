@@ -6,3 +6,6 @@ __pycache__/
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
+
+# Carried-in configuration when building a dev container
+/.inherited-configuration
