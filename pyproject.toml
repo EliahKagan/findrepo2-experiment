@@ -33,7 +33,7 @@ tiktoken = "^0.2.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
-mypy = "^1.0.0"
+mypy = "^1.0.1"
 pylint = "^2.16.2"
 pyright = "^1.1.293"
 types-beautifulsoup4 = "^4.11.6.5"
