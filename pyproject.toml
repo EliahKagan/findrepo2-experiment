@@ -38,7 +38,7 @@ pylint = "^2.16.2"
 pyright = "^1.1.293"
 types-beautifulsoup4 = "^4.11.6.5"
 types-colorama = "^0.4.15.7"
-types-requests = "^2.28.11.12"
+types-requests = "^2.28.11.13"
 
 
 [tool.poetry.group.notebook.dependencies]
