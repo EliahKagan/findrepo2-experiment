@@ -31,7 +31,6 @@ __all__ = [
 import datetime
 from decimal import Decimal
 import functools
-import itertools
 import re
 import textwrap
 from typing import Iterable, Iterator, Optional, Sequence
@@ -63,6 +62,13 @@ _RATE_PATTERN_DENOMINATOR = 1000
 """The denominator that _RATE_PATTERN currently works with."""
 
 _REQUEST_TIMEOUT = datetime.timedelta(seconds=30)
+
+_find_model_heading = functools.partial(
+    bs4.Tag.find_all,
+    name='h3',
+    attrs={'class': 'f-heading-3'},
+)
+"""Select model category headings in a given element. Use like find_all."""
 
 _encoding = tiktoken.get_encoding('cl100k_base')
 """cl100k_base encoder/decoder."""
@@ -114,6 +120,7 @@ def _get_pricing_page() -> str:
         timeout=_REQUEST_TIMEOUT.total_seconds(),
     )
     response.raise_for_status()
+    response.encoding = response.apparent_encoding
     return response.text
 
 
@@ -129,16 +136,14 @@ def find_embedding_model_prices(
     """Retrieve the prices of embedding models."""
     doc = bs4.BeautifulSoup(_get_pricing_page(), features='lxml')
 
-    headings = doc.find_all('h3', text='Embedding models')
+    headings = _find_model_heading(doc, string='Embedding models')
     _need(len(headings) == 1)
     doc_row = headings[0].parent.parent.parent.parent
-    _need(len(doc_row.select('h3.f-heading-3')) == 1)
-
-    # heading = doc.find('h3.f-heading-3')
+    _need(len(_find_model_heading(doc_row)) == 1)
 
     frames = pandas.read_html(str(doc_row), displayed_only=displayed_only)
-    _need({tuple(df.columns.values) for df in frames} == {('Model', 'Usage')})
-    data_rows = itertools.chain.from_iterable(df.to_numpy() for df in frames)
+    data_header, *data_rows = (row for df in frames for row in df.values)
+    _need((data_header == ('Model', 'Usage')).all())
     return {name: _parse_rate(text) for name, text in data_rows}
 
 
