@@ -3,14 +3,16 @@ name: findrepo2-experiment
 channels:
   - conda-forge
 
-dependencies:
+dependencies:  # FIXME: Check if html5lib and lxml are really needed.
   - python=3.11
   - attrs
   - beautifulsoup4
   - colorama
   - conda-build
   - fabric
+  - html5lib
   - ipykernel
+  - lxml
   - msgpack-numpy
   - msgpack-python
   - nptyping
@@ -20,13 +22,6 @@ dependencies:
   - pip
   - requests
   - tabulate
-
-  # For openai.embeddings_utils (move above if used directly)
-  - matplotlib
-  - plotly
-  - scikit-learn
-  - scipy
-  - tenacity
 
   # Dependencies for tiktoken
   - blobfile>=2
