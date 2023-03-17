@@ -110,7 +110,7 @@ def _parse_rate(text: str) -> Rate:
 def _get_pricing_page() -> str:
     """Retrieve the pricing page from the OpenAI website."""
     response = requests.get(
-        url='https://openai.com/api/pricing/',
+        url='https://openai.com/pricing/',
         timeout=_REQUEST_TIMEOUT.total_seconds(),
     )
     response.raise_for_status()
@@ -131,8 +131,10 @@ def find_embedding_model_prices(
 
     headings = doc.find_all('h3', text='Embedding models')
     _need(len(headings) == 1)
-    doc_row = headings[0].parent.parent.parent
-    _need(len(doc_row.find_all('h3')) == 1)
+    doc_row = headings[0].parent.parent.parent.parent
+    _need(len(doc_row.select('h3.f-heading-3')) == 1)
+
+    # heading = doc.find('h3.f-heading-3')
 
     frames = pandas.read_html(str(doc_row), displayed_only=displayed_only)
     _need({tuple(df.columns.values) for df in frames} == {('Model', 'Usage')})
