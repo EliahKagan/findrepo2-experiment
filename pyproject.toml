@@ -10,7 +10,7 @@ packages = [{include = "fr2ex"}]
 [tool.poetry.dependencies]
 python = "~3.11"
 attrs = "^22.2.0"
-beautifulsoup4 = "^4.12.0"
+beautifulsoup4 = "^4.12.2"
 blake3 = "^0.3.3"
 colorama = "^0.4.6"
 fabric = "^3.0.0"
