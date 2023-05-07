@@ -28,7 +28,7 @@ import os
 from pathlib import Path
 from typing import Protocol, TypeVar
 
-import blake3
+from blake3 import blake3  # type: ignore[import]
 import msgpack
 import msgpack_numpy
 import openai
@@ -47,7 +47,7 @@ msgpack_numpy.patch()
 def _build_path(task_name: str, texts: list[str]) -> Path:
     """Build a pathname with the task name and a blake3 hash of the texts."""
     json_bytes = json.dumps(texts).encode()
-    hexdigest = blake3.blake3(json_bytes).hexdigest(length=16)
+    hexdigest = blake3(json_bytes).hexdigest(length=16)
     return paths.data_dir / f'{task_name}-{hexdigest}.msgpack'
 
 
@@ -82,7 +82,9 @@ def api_task(task_name: str) -> TaskDecorator:
             with contextlib.suppress(FileNotFoundError):
                 with open(path, 'rb') as file:
                     logging.info('Reading cached %s.', task_name)
-                    return msgpack.unpack(file, raw=False)
+                    return msgpack.unpack(file, raw=False)  # type: ignore
+                    # FIXME: If not removing msgpack (per issue @97), then
+                    #        deal with this better than "type: ignore".
 
             ensure_api_key()
             logging.info('Querying OpenAI %s endpoint.', task_name)
