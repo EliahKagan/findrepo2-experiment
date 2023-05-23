@@ -154,7 +154,7 @@ def count(texts: list[str]) -> int:
 
 def report_cost(texts: list[str]) -> None:
     """Report a cost estimate for calling text-embedding-ada-002 on texts."""
-    rate = find_embedding_model_prices()['Ada']
+    rate = find_embedding_model_prices()['Ada v2']
     token_count = count(texts)
     total_cost = token_count * rate.value
 
