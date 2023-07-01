@@ -39,7 +39,7 @@ types-requests = "^2.31.0.1"
 
 
 [tool.poetry.group.notebook.dependencies]
-ipython = "^8.13.2"
+ipython = "^8.14.0"
 jupyterlab = "^4.0.1"
 
 [build-system]
