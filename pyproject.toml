@@ -20,7 +20,7 @@ lxml = "^4.9.2"
 msgpack-numpy = "^0.4.8"
 msgpack-python = "^0.5.6"
 nptyping = "^2.5.0"
-numpy = "^1.24.3"
+numpy = "^1.25.0"
 openai = {extras = ["embeddings"], version = "^0.27.7"}
 pandas = "^2.0.2"
 requests = "^2.31.0"
