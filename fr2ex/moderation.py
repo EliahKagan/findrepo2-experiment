@@ -16,14 +16,16 @@ Checking OpenAI moderation endpoint results for repository names.
 
 This project uses an OpenAI service (embeddings). But it does not involve
 generating any content with OpenAI services. So checking the moderation
-endpoint shouldn't be needed for compliance with the OpenAI content policy.
+endpoint would only need to be done if the repository names themselves (which
+on a small server likely already have scrutiny) would be considered a violation
+of OpenAI's content policy.
 
-It may still be interesting. One use is to point out to the user that the
-repository name they're interested in may inadvertently have unintended
-interpretations. For example, a UI element that points out that a repo name is
-a poor choice because it has whitespace, control characters, or other confusing
-characters, could also point out if it seems to be not safe for work, or not
-safe for life.
+Even beyond that, it may still be interesting. One use is to point out to the
+user that the repository name they're interested in may inadvertently have
+unintended interpretations. For example, a UI element that points out that a
+repo name is a poor choice because it has whitespace, control characters, or
+other confusing characters, could also point out if it seems to be not safe for
+work, or not safe for life.
 
 Note that, per https://beta.openai.com/docs/guides/moderation/overview:
 
