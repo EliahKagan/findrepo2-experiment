@@ -46,19 +46,33 @@ should be fine. But it is important to keep in mind:
     repository names (nor other data) to the OpenAI moderation endpoint.
 """
 
-__all__ = ['Categories', 'CategoryScores', 'Result']
+__all__ = [
+    'Categories',
+    'CategoryScores',
+    'Result',
+    'any_flagged',
+    'get_moderation',
+]
 
-from typing import Any, TypedDict
+from typing import Any, TypedDict, cast
 
+import more_itertools
 import openai
 
 from fr2ex import _task
+
+_CHUNK_SIZE = 32
+"""Number of moderations to retrieve per API request."""
 
 
 Categories = TypedDict('Categories', {
     'hate': bool,
     'hate/threatening': bool,
+    'harassment': bool,
+    'harassment/threatening': bool,
     'self-harm': bool,
+    'self-harm/intent': bool,
+    'self-harm/instructions': bool,
     'sexual': bool,
     'sexual/minors': bool,
     'violence': bool,
@@ -70,7 +84,11 @@ Categories = TypedDict('Categories', {
 CategoryScores = TypedDict('CategoryScores', {
     'hate': float,
     'hate/threatening': float,
+    'harassment': float,
+    'harassment/threatening': float,
     'self-harm': float,
+    'self-harm/intent': float,
+    'self-harm/instructions': float,
     'sexual': float,
     'sexual/minors': float,
     'violence': float,
@@ -89,11 +107,28 @@ class Result(TypedDict):
     """Each category's score as returned in this moderation result."""
 
     flagged: bool
-    """Whether one or more categories are flagged in this moderation result."""
+    """
+    Whether the text is considered flagged.
+
+    Usually this has been equivalent to checking if any of the categories are
+    flagged, but I am not sure if that is officially guaranteed.
+    """
+
+
+def any_flagged(result: Result) -> bool:
+    """
+    Check if the moderation result shows any category flagged.
+
+    Usually this has been equivalent to the values associated with the
+    ``flagged`` key in the result, but I am not sure if that is officially
+    guaranteed.
+    """
+    return any(result['categories'].values())
 
 
 @_task.api_task('moderation')
 def get_moderation(texts: list[str]) -> list[Result]:
     """Load or query the API for a list of moderation results for all texts."""
-    response: Any = openai.Moderation.create(input=texts)
-    return response.results
+    chunks = more_itertools.chunked(texts, _CHUNK_SIZE)
+    moderations = (openai.Moderation.create(input=chunk) for chunk in chunks)
+    return [result for mod in moderations for result in cast(Any, mod).results]
