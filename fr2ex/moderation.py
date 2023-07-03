@@ -54,11 +54,15 @@ __all__ = [
     'get_moderation',
 ]
 
-from typing import Any, TypedDict
+from typing import Any, TypedDict, cast
 
+import more_itertools
 import openai
 
 from fr2ex import _task
+
+_CHUNK_SIZE = 32
+"""Number of moderations to retrieve per API request."""
 
 
 Categories = TypedDict('Categories', {
@@ -125,5 +129,6 @@ def any_flagged(result: Result) -> bool:
 @_task.api_task('moderation')
 def get_moderation(texts: list[str]) -> list[Result]:
     """Load or query the API for a list of moderation results for all texts."""
-    response: Any = openai.Moderation.create(input=texts)
-    return response.results
+    chunks = more_itertools.chunked(texts, _CHUNK_SIZE)
+    moderations = (openai.Moderation.create(input=chunk) for chunk in chunks)
+    return [result for mod in moderations for result in cast(Any, mod).results]
