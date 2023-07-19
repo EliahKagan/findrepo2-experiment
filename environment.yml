@@ -20,7 +20,7 @@ dependencies:  # FIXME: Check if html5lib and lxml are really needed.
   - openai
   - pandas
   - pip
-  - requests
+  - requests>=2.31.0
   - tabulate
 
   # Dependencies for tiktoken
