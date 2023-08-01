@@ -21,7 +21,7 @@ more-itertools = "^10.0.0"
 msgpack-numpy = "^0.4.8"
 msgpack-python = "^0.5.6"
 nptyping = "^2.5.0"
-numpy = "^1.25.1"
+numpy = "^1.25.2"
 openai = {extras = ["embeddings"], version = "^0.27.8"}
 pandas = "^2.0.3"
 requests = "^2.31.0"
