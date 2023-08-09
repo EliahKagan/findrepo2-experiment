@@ -68,15 +68,15 @@ poetry shell
 ## Preliminary results
 
 Based on the matches shown in [`notebooks/main.ipynb`](notebooks/main.ipynb),
-this *seems* to work:
+this *seems* to…
 
-- Not as well as `findrepo` in the common case when the user’s guess has some
-  parts of the name correct. I call this the common case because I usually
+- …not work as well as `findrepo` in the common case when the user’s guess has
+  some parts of the name correct. I call this the common case because I usually
   mostly remember what I called repositories.
-- Better than `findrepo` when the user’s guess is semantically related to the
-  actual name but shared none, or *very* little, of it. This is as expected,
-  since the algorithm `findrepo` uses doesn’t know anything about meaning,
-  except insofar as that meaning correlates with shared substrings.
+- …work better than `findrepo` when the user’s guess is semantically related to
+  the actual name but shared none, or *very* little, of it. This is as
+  expected, since the algorithm `findrepo` uses doesn’t know anything about
+  meaning, except insofar as that meaning correlates with shared substrings.
 
 So the tests here should not be directly translated into an improved version of
 `findrepo`, *at this time*.
