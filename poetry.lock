@@ -2803,13 +2803,13 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pyright"
-version = "1.1.322"
+version = "1.1.325"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.322-py3-none-any.whl", hash = "sha256:1bcddb55c4fca5d3c86eee71db0e8aad80536527f2084284998c6cbceda10e4e"},
-    {file = "pyright-1.1.322.tar.gz", hash = "sha256:c8299d8b5d8c6e6f6ea48a77bf330a6df79e23305d21d25043bba8a23c1e1ed8"},
+    {file = "pyright-1.1.325-py3-none-any.whl", hash = "sha256:8f3ab88ba4843f053ab5b5c886d676161aba6f446776bfb57cc0434ed4d88672"},
+    {file = "pyright-1.1.325.tar.gz", hash = "sha256:879a3f66944ffd59d3facd54872fed814830fed64daf3e8eb71b146ddd83bb67"},
 ]
 
 [package.dependencies]
@@ -4022,4 +4022,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "764ef402dd284cf5b6dd952b612a61fd6b77c5feadc7b09925e72d13d72b48b9"
+content-hash = "aef3a7e8642e70f74c1934e8c629a24c9931a22ee7a928ee61c413d3b5a63095"
