@@ -102,7 +102,9 @@ Two patterns of interest appear:
 
 For example, `datarace` is tokenized as `data` `-r` `ace`.
 
-This is the pattern that seems most compelling. Repositories shouldn’t be named with spaces, but if the name *had* been `data race`, then it would’ve been tokenized as `data` <code>&nbsp;race</code>.
+This is the pattern that seems most compelling. Repositories shouldn’t be named
+with spaces, but if the name *had* been `data race`, then it would’ve been
+tokenized as `data` <code>&nbsp;race</code>.
 
 #### 2. Non-initial camel-case words starting with very short tokens
 
