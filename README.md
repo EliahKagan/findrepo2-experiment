@@ -92,7 +92,7 @@ context would fill in the meaning. But when embedding repository names, no
 context goes into the embedding computation. So I suspect that when
 tokenization splits the name at semantically irrelevant boundaries, *in the
 cases that this prevents splitting at semantically relevant ones*, it may
-decrease [performance](https://stats.stackexchange.com/a/385315/269337).
+decrease the quality of results from the model.
 
 ### Patterns of *possibly* undesirable splitting
 
