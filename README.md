@@ -92,7 +92,7 @@ context would fill in the meaning. But when embedding repository names, no
 context goes into the embedding computation. So I suspect that when
 tokenization splits the name at semantically irrelevant boundaries, *in the
 cases that this prevents splitting at semantically relevant ones*, it may
-decrease [performance](https://stats.stackexchange.com/a/385315/269337).
+decrease the quality of results from the model.
 
 ### Patterns of *possibly* undesirable splitting
 
@@ -102,7 +102,9 @@ Two patterns of interest appear:
 
 For example, `datarace` is tokenized as `data` `-r` `ace`.
 
-This is the pattern that seems most compelling. Repositories shouldn’t be named with spaces, but if the name *had* been `data race`, then it would’ve been tokenized as `data` <code>&nbsp;race</code>.
+This is the pattern that seems most compelling. Repositories shouldn’t be named
+with spaces, but if the name *had* been `data race`, then it would’ve been
+tokenized as `data` <code>&nbsp;race</code>.
 
 #### 2. Non-initial camel-case words starting with very short tokens
 
