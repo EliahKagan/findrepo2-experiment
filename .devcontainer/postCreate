@@ -85,5 +85,5 @@ msg '...project environment for poetry is set up.'
 nl
 msg 'Setting up project environment for conda and mamba...'
 ~/mambaforge/condabin/mamba env create
-~/mambaforge/condabin/mamba run --name findrepo2-experiment mamba develop .
+~/mambaforge/condabin/mamba run --name findrepo2-experiment conda develop .
 msg '...project environment for conda and mamba is set up.'
