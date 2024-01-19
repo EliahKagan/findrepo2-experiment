@@ -41,7 +41,7 @@ types-requests = "^2.31.0.10"
 
 [tool.poetry.group.notebook.dependencies]
 ipython = "^8.17.2"
-jupyterlab = "^4.0.7"
+jupyterlab = "^4.0.11"
 
 [build-system]
 requires = ["poetry-core"]
