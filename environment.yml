@@ -17,7 +17,7 @@ dependencies:  # FIXME: Check if html5lib and lxml are really needed.
   - msgpack-python
   - nptyping
   - numpy
-  - openai
+  - openai<1
   - pandas
   - pip
   - requests>=2.31.0
