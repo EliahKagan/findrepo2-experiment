@@ -22,7 +22,7 @@ msgpack-numpy = "^0.4.8"
 msgpack-python = "^0.5.6"
 nptyping = "^2.5.0"
 numpy = "^1.26.3"
-openai = {extras = ["embeddings"], version = "^0.28.1"}
+openai = {extras = ["embeddings"], version = "^1.55.3"}
 pandas = "^2.2.0"
 requests = "^2.32.0"
 tabulate = "^0.9.0"
