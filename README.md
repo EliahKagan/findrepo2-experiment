@@ -59,7 +59,7 @@ cd findrepo2-experiment  # When about to use the software.
 conda activate findrepo2-experiment
 ```
 
-Or if using `poetry`:
+Or if using `poetry` (with `poetry-plugin-shell` installed):
 
 ```sh
 cd findrepo2-experiment  # When about to use the software.
