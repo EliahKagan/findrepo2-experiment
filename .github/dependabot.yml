@@ -1,18 +1,21 @@
 version: 2
 updates:
-  - package-ecosystem: "pip"
-    directory: "/"
+  - package-ecosystem: pip
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: monthly
     allow:
-      - dependency-type: "all"
-    open-pull-requests-limit: 20
+      - dependency-type: all
     groups:
-      python-dependencies:
+      python:
         patterns: ['*']
-        exclude-patterns: ['openai']
+        exclude-patterns:
+          - openai
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: daily
+    groups:
+      actions:
+        patterns: ['*']
