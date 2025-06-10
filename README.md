@@ -9,10 +9,11 @@
 
 These are experiments toward a program like
 [`findrepo`](https://github.com/EliahKagan/newrepo-findrepo#using-findrepo),
-but using
+but using an embedding model like
 [text-embedding-ada-002](https://platform.openai.com/docs/guides/embeddings/embedding-models)
-([OpenAI’s new general purpose text embedding
-model](https://openai.com/blog/new-and-improved-embedding-model/)).
+(which was [OpenAI’s new general purpose text embedding
+model](https://openai.com/blog/new-and-improved-embedding-model/) at the time
+these experiments were begun).
 
 This is in contrast to the custom nonempty-substring frequency vectors
 (non-semantic vocabulary-unaware sparse lossless embeddings in an indefinitely
@@ -58,7 +59,7 @@ cd findrepo2-experiment  # When about to use the software.
 conda activate findrepo2-experiment
 ```
 
-Or if using `poetry`:
+Or if using `poetry` (with `poetry-plugin-shell` installed):
 
 ```sh
 cd findrepo2-experiment  # When about to use the software.
