@@ -9,39 +9,39 @@ packages = [{include = "fr2ex"}]
 
 [tool.poetry.dependencies]
 python = "~3.11"
-attrs = "^23.2.0"
-beautifulsoup4 = "^4.12.3"
-blake3 = "^0.3.3"
+attrs = "^25.3.0"
+beautifulsoup4 = "^4.13.5"
+blake3 = "^1.0.5"
 colorama = "^0.4.6"
 fabric = "^3.2.2"
 html5lib = "^1.1"
-ipykernel = "^6.29.0"
-lxml = "^5.1.0"
-more-itertools = "^10.2.0"
+ipykernel = "^6.30.1"
+lxml = "^6.0.1"
+more-itertools = "^10.7.0"
 msgpack-numpy = "^0.4.8"
 msgpack-python = "^0.5.6"
 nptyping = "^2.5.0"
-numpy = "^1.26.3"
+numpy = "^1.26.4"
 openai = {extras = ["embeddings"], version = "^0.28.1"}
-pandas = "^2.2.0"
-requests = "^2.32.4"
+pandas = "^2.3.2"
+requests = "^2.32.5"
 tabulate = "^0.9.0"
-tiktoken = "^0.5.1"
+tiktoken = "^0.11.0"
 
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^7.0.0"
-mypy = "^1.8.0"
-pylint = "^3.0.3"
-pyright = "^1.1.349"
-types-beautifulsoup4 = "^4.12.0.20240106"
-types-colorama = "^0.4.15.12"
-types-requests = "^2.31.0.20240125"
+flake8 = "^7.3.0"
+mypy = "^1.17.1"
+pylint = "^3.3.8"
+pyright = "^1.1.404"
+types-beautifulsoup4 = "^4.12.0.20250516"
+types-colorama = "^0.4.15.20250801"
+types-requests = "^2.32.4.20250809"
 
 
 [tool.poetry.group.notebook.dependencies]
-ipython = "^8.21.0"
-jupyterlab = "^4.2.5"
+ipython = "^9.5.0"
+jupyterlab = "^4.4.6"
 
 [build-system]
 requires = ["poetry-core"]
